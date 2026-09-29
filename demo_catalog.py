@@ -1,11 +1,11 @@
-"""Synthetic medical device service demo catalog — fictional data only."""
+"""Demo medical device service catalog"""
 
 from __future__ import annotations
 
 import re
 from typing import TypedDict
 
-DEFAULT_DEMO_SITE_NAME = "Memorial Demo Hospital"
+DEFAULT_DEMO_SITE_NAME = "Memorial Hospital"
 
 SERIAL_PREFIX = "MDV"
 

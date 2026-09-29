@@ -4,7 +4,7 @@ Multi-agent field-service voice demo (OpenAI Agents SDK).
 
 A supervisor agent routes to specialists; each specialist has its own tools.
 
-Synthetic demo data only — not connected to production systems.
+Synthetic demo data only.
 
 Requires a microphone and speaker. Set OPENAI_API_KEY (e.g. in .env), then:
 

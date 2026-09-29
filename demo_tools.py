@@ -18,7 +18,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DEMO_SITE_NAME = os.environ.get("DEMO_SITE_NAME", "Memorial Demo Hospital")
+DEMO_SITE_NAME = os.environ.get("DEMO_SITE_NAME", "Memorial Hospital")
 DEVICES = build_devices(DEMO_SITE_NAME)
 
 

@@ -45,7 +45,7 @@ def build_agent_graph() -> RealtimeAgent:
     device_agent = RealtimeAgent(
         name="Device Registry Agent",
         instructions=(
-            f"{SAFETY_NOTE} {SPECIALIST_WORKFLOW} "
+            f"{SPECIALIST_WORKFLOW} "
             "You look up hospital capital equipment by serial number using lookup_device only. "
             "Never invent device records. Speak briefly and professionally. "
             "If the serial is unclear, ask the user to repeat it."
@@ -57,7 +57,7 @@ def build_agent_graph() -> RealtimeAgent:
     case_agent = RealtimeAgent(
         name="Case Status Agent",
         instructions=(
-            f"{SAFETY_NOTE} {SPECIALIST_WORKFLOW} "
+            f"{SPECIALIST_WORKFLOW} "
             "You provide service case status and notes using get_service_case only. "
             "Never invent case details. Speak briefly and professionally. "
             "If the case ID is unclear, ask the user to repeat it."
@@ -69,7 +69,7 @@ def build_agent_graph() -> RealtimeAgent:
     troubleshooting_agent = RealtimeAgent(
         name="Troubleshooting Agent",
         instructions=(
-            f"{SAFETY_NOTE} {SPECIALIST_WORKFLOW} "
+            f"{SPECIALIST_WORKFLOW} "
             "You provide non-invasive troubleshooting checklists using get_troubleshooting_guide only. "
             "Never invent repair steps or parts availability. Speak briefly and professionally. "
             "If the user describes patient harm, sterilization failure, safety interlock faults, fire, "
@@ -82,7 +82,7 @@ def build_agent_graph() -> RealtimeAgent:
     supervisor = RealtimeAgent(
         name="Service Supervisor",
         instructions=(
-            f"{SAFETY_NOTE} {SUPERVISOR_ROUTING} "
+            f"{SUPERVISOR_ROUTING} "
             "Routing map (handoff tools only, never say these names aloud): "
             "serial or asset lookup → device handoff; "
             "case ID or ticket status → case handoff; "
