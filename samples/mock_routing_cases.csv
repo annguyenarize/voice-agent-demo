@@ -1,0 +1,26 @@
+example_id,input,specialist_called,expected_handoff_tool,expected_specialist,gold_label,scenario,notes
+sr-001,Look up device serial MDV 7842 019.,transfer_to_device_registry_agent,transfer_to_device_registry_agent,Device Registry Agent,correct,positive,README live script — device lookup
+sr-002,What's the status of case 10482?,transfer_to_case_status_agent,transfer_to_case_status_agent,Case Status Agent,correct,positive,README live script — case status
+sr-003,The display flickers on boot on the visualization system — what should I check?,transfer_to_troubleshooting_agent,transfer_to_troubleshooting_agent,Troubleshooting Agent,correct,positive,README live script — symptoms / checklist
+sr-004,Can you pull up asset MDV-2201-441?,transfer_to_device_registry_agent,transfer_to_device_registry_agent,Device Registry Agent,correct,positive,Alternate serial format from demo catalog
+sr-005,Give me an update on service ticket CASE-10491.,transfer_to_case_status_agent,transfer_to_case_status_agent,Case Status Agent,correct,positive,Explicit ticket wording
+sr-006,Is serial MDV-9910-002 still under warranty?,transfer_to_device_registry_agent,transfer_to_device_registry_agent,Device Registry Agent,correct,positive,Warranty question tied to serial lookup
+sr-007,Who is the FSE on case ten four eight two?,transfer_to_case_status_agent,transfer_to_case_status_agent,Case Status Agent,correct,positive,Dispatch / assignee — case agent
+sr-008,When is the ETA for case 10482?,transfer_to_case_status_agent,transfer_to_case_status_agent,Case Status Agent,correct,positive,ETA maps to case status
+sr-009,The foot pedal on the power console feels laggy — any steps?,transfer_to_troubleshooting_agent,transfer_to_troubleshooting_agent,Troubleshooting Agent,correct,positive,Power console symptom from catalog case note
+sr-010,Walk me through cold boot checks for the visualization tower.,transfer_to_troubleshooting_agent,transfer_to_troubleshooting_agent,Troubleshooting Agent,correct,positive,Checklist request without serial
+sr-011,Look up device serial MDV 7842 019.,transfer_to_case_status_agent,transfer_to_device_registry_agent,Device Registry Agent,incorrect,negative,Device intent but wrong handoff to case agent
+sr-012,What's the status of case 10482?,transfer_to_device_registry_agent,transfer_to_case_status_agent,Case Status Agent,incorrect,negative,Case intent but wrong handoff to device agent
+sr-013,The display flickers on boot — what should I check?,transfer_to_device_registry_agent,transfer_to_troubleshooting_agent,Troubleshooting Agent,incorrect,negative,Troubleshooting intent but routed to device
+sr-014,Can you restart my machine?,transfer_to_troubleshooting_agent,transfer_to_troubleshooting_agent,Troubleshooting Agent,correct,positive,Short symptom utterance (production-like)
+sr-015,Please start the meeting when everyone is ready.,transfer_to_troubleshooting_agent,transfer_to_troubleshooting_agent,Troubleshooting Agent,incorrect,edge,Off-topic / non-field-service; judge may struggle — included to tune prompt
+sr-016,For case 10482 what's the serial on file?,transfer_to_case_status_agent,transfer_to_case_status_agent,Case Status Agent,correct,edge,Case record question not a new serial lookup
+sr-017,MDV-7842-019 keeps flickering — troubleshooting steps?,transfer_to_troubleshooting_agent,transfer_to_troubleshooting_agent,Troubleshooting Agent,correct,edge,Serial plus symptom; primary intent is troubleshooting
+sr-018,Look up MDV-7842-019 and also tell me case 10482 status.,transfer_to_device_registry_agent,transfer_to_device_registry_agent,Device Registry Agent,incorrect,edge,Multi-intent; first action should often be device OR case — document disagreement risk
+sr-019,Navigation hub registration keeps drifting.,transfer_to_troubleshooting_agent,transfer_to_troubleshooting_agent,Troubleshooting Agent,correct,positive,Product alias symptom — Navigation Hub
+sr-020,What's the status of case 10482?,transfer_to_troubleshooting_agent,transfer_to_case_status_agent,Case Status Agent,incorrect,negative,Clear case query routed to troubleshooting
+sr-021,transfer_to_device_registry_agent,transfer_to_device_registry_agent,transfer_to_device_registry_agent,Device Registry Agent,incorrect,edge,Malformed input — tool name spoken as user text; expect incorrect or skip
+sr-022,Device Registry Agent,transfer_to_device_registry_agent,transfer_to_device_registry_agent,Device Registry Agent,correct,positive,specialist_called as agent display name instead of tool slug
+sr-023,I need the asset record for memorial demo hospital tower serial ending in zero one nine.,transfer_to_device_registry_agent,transfer_to_device_registry_agent,Device Registry Agent,correct,positive,Verbose device lookup
+sr-024,Case 10491 — is it still in progress?,transfer_to_case_status_agent,transfer_to_case_status_agent,Case Status Agent,correct,positive,Second catalog case
+sr-025,The visualization system shows a black screen on power-up.,transfer_to_troubleshooting_agent,transfer_to_troubleshooting_agent,Troubleshooting Agent,correct,positive,Symptom-only boot failure
