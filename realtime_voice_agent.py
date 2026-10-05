@@ -49,11 +49,11 @@ REALTIME_CONFIG: RealtimeRunConfig = {
                 "turn_detection": {
                     "type": "semantic_vad",
                     "interrupt_response": False,
-                    "eagerness": "low",
+                    "eagerness": "medium",
                 },
             },
             "output": {
-                "speed": 1.25,
+                "speed": 1.2,
             },
         },
     },
