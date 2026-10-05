@@ -52,6 +52,9 @@ REALTIME_CONFIG: RealtimeRunConfig = {
                     "eagerness": "low",
                 },
             },
+            "output": {
+                "speed": 1.25,
+            },
         },
     },
 }
