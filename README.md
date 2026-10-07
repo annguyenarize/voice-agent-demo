@@ -32,7 +32,7 @@ Requires [uv](https://docs.astral.sh/uv/getting-started/installation/), Python 3
    cp .env.example .env
    ```
 
-   Edit `.env` and set at least `OPENAI_API_KEY` (required for the voice agent). For Arize tracing, set `ARIZE_API_KEY`, `ARIZE_SPACE_ID`, and optionally `ARIZE_PROJECT_NAME` (default in the example: `stryker-voice-service-demo`).
+   Edit `.env` and set at least `OPENAI_API_KEY` (required for the voice agent). For Arize tracing, set `ARIZE_API_KEY`, `ARIZE_SPACE_ID`, and `ARIZE_PROJECT_NAME` (example: `stryker-voice-service-demo`). Tracing initializes from [`instrumentation.py`](instrumentation.py) on startup; spans include Realtime audio (up to ~60s per utterance via `ARIZE_AUDIO_CAPTURE_SECONDS`).
 
 3. Run the agent (with the venv activated):
 
@@ -94,6 +94,54 @@ Use this when demoing [Arize Skills](https://arize.com/docs/ax/skills/install) i
    Skills land under `.cursor/skills/` in this project. Re-open the folder in Cursor and ask the agent to use a skill by name (for example, instrument this app with `arize-instrumentation`, or inspect traces with `arize-trace`).
 
    Full options (other agents, global install, overwrite): [AX Skills install docs](https://arize.com/docs/ax/skills/install).
+
+## Arize Skills Demo
+
+Use the prompts below in Cursor after **Arize Skills Setup**. Project and space come from `.env` (`ARIZE_PROJECT_NAME`, `ARIZE_SPACE_ID`, `ARIZE_API_KEY`).
+
+### Instrument
+
+Ask the agent (skill: **`arize-instrumentation`**):
+
+> Instrument this voice application. Send traces to the project name configured in `.env`. Allow up to a minute of audio per utterance.
+
+### Evals
+
+Ask the agent (skill: **`arize-evaluator`**):
+
+1. **Trajectory / routing**
+
+   > Create a trajectory evaluator that determines whether the correct specialist agent was called based on the user input.
+
+2. **Hallucination (optional)**
+
+   > Create a hallucination evaluator for my project using the hallucination template. Map input, output, and context to span attributes: input and output from the **audio** span; context from the **output** on **tool** spans.
+
+3. **Frustrated tone (audio)**
+
+   > Create an audio evaluator that determines whether the input audio has a frustrated tone or not.
+
+   **Implemented:** Hub evaluator **Voice Input Frustrated Tone** and task **Voice frustrated tone (audio)** — use the **OpenAI arize** integration and `{attributes.input.audio}` mapping (see [`evaluators/README.md`](evaluators/README.md)). Optional offline backfill: [`evaluators/run_frustrated_tone_audio_eval.py`](evaluators/run_frustrated_tone_audio_eval.py) when you have local session recordings.
+
+### Dataset / experiments
+
+Ask the agent (skills: **`arize-dataset`**, **`arize-experiment`**, **`arize-evaluator`**, **`arize-prompt-optimization`**):
+
+1. **Dataset**
+
+   > Create a dataset in Arize using the mock dataset in [`samples/`](samples/) ([`samples/mock_routing_cases.csv`](samples/mock_routing_cases.csv)).
+
+2. **Routing eval experiment (not the live agent)**
+
+   > Create an experiment that runs the **routing eval prompt** on the dataset. Run experiments on the eval prompt, not the actual agent prompt. The experiment output should be the result of running the routing eval prompt on each dataset row.
+
+3. **Score the experiment**
+
+   > Create an evaluator for the experiment that compares the experiment output with the golden label on the dataset.
+
+4. **Improve the routing evaluator**
+
+   > Use these results to update the routing evaluator to be more accurate. Run more experiments if needed.
 
 ## Live script (~2 minutes)
 
